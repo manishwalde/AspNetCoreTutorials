@@ -1,0 +1,36 @@
+﻿@*@using IEnumerable<EmployeeManagement.Models.Employee>*@
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Employee List";
+}
+
+<h1>Employees List</h1>
+
+<div class="card-deck">
+    @foreach (var employee in Model)
+    {
+        var photoPath = "~/Images/" + (employee.PhotoPath ?? "noimage.png");
+
+        <div class="card m-3" style="min-width:18rem; max-width:25.5%;">
+            <div class="card-header">
+                <h3>@employee.Name</h3>
+            </div>
+            <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
+            <div class="card-footer text-center">
+                @* Method-I Recommended *@
+                <a asp-controller="home" asp-action="details" asp-route-id="@employee.Id"
+                   class="btn btn-primary m-1">View</a>
+                <a asp-controller="home" asp-action="edit" asp-route-id="@employee.Id"
+                   class="btn btn-primary m-1">Edit</a>
+                <a asp-controller="home" asp-action="delete" asp-route-id="@employee.Id"
+                   class="btn btn-danger m-1">Delete</a>
+                @* Method-II Recommended
+                     <a href="@Url.Action("details", "home", new { id = employee.Id })"
+                    class="btn btn-primary">Show</a>*@
+                @* Method-III Recommended
+                    @Html.ActionLink("View", "details", "home", new { id = employee.Id })*@
+            </div>
+        </div>
+    }
+</div>
