@@ -1,0 +1,19 @@
+create dotnet core
+dotnet new  webapi
+dotnet build
+dotnet run
+
+add packages via cli
+dotnet add package <package name> --version <version no>
+dotnet ef
+dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
+
+create migration
+dotnet ef migrations add InitialMigration
+
+update migration to DB
+dotnet ef database update
+
+remove migration
+dotnet ef migrations remove
